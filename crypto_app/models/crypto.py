@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Float, Index, Enum
+from sqlalchemy import Column, ForeignKey, Integer, String, Float, Index, Enum, BigInteger
 
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,6 +18,7 @@ class Crypto(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
     symbol = Column(String, unique=True, index=True)
+    price = Column(BigInteger)
 
 
 class Wallet(Base):

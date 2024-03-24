@@ -1,12 +1,10 @@
-FROM python:3.9
+FROM python:3.8
 
-WORKDIR /app
+WORKDIR /code
 
-COPY . /app
-
-COPY requirements.txt /app/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+COPY . .
 
-CMD alembic upgrade head && uvicorn main:app --host 0.0.0.0 --reload
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--reload"]

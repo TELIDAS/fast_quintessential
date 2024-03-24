@@ -3,3 +3,4 @@ postgres_data
 .env
 .idea
 __pycache__/
+rabbitmq_data

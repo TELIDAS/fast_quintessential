@@ -32,5 +32,24 @@ services:
       - .env
 
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq_data:/var/lib/rabbitmq
+
+  celery_worker:
+    build: .
+    command: celery -A crypto_app.celery.tasks worker --loglevel=info
+    environment:
+      - CELERY_BROKER_URL=${RABBIT_BROKER_URL}
+    depends_on:
+      - server
+      - rabbitmq
+
+
 volumes:
   postgres_data:
+  rabbitmq_data:

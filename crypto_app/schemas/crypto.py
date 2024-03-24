@@ -73,3 +73,7 @@ class Transaction(TransactionBase):
 
     class Config:
         orm_mode = True
+
+
+class CurrencyRequest(BaseModel):
+    currency: str
